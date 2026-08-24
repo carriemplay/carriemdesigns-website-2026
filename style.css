@@ -16,6 +16,25 @@
     --font-body: 'Iowan Old Style', Iowan, Georgia, serif;
     
     --text-color: #1F2427;
+    
+    /* Spacing System (Standard 8pt / 4pt Grid) */
+    --space-4: 4px;    /* 3xs - micro offsets, badge padding */
+    --space-8: 8px;    /* 2xs - icon gaps, list item gaps */
+    --space-12: 12px;  /* xs  - inline elements, tight margins */
+    --space-16: 16px;  /* sm  - text block spacing, title margins */
+    --space-24: 24px;  /* md  - standard card gap, grid gaps */
+    --space-32: 32px;  /* lg  - card padding, section title margins */
+    --space-48: 48px;  /* xl  - container margins, section padding */
+    
+    /* Typography Scale (Standard Modular Scale, 16px Base) */
+    --text-xs: 0.75rem;    /* 12px - footnotes, tiny captions */
+    --text-sm: 0.875rem;   /* 14px - metadata, dates, tags, small body */
+    --text-base: 1rem;     /* 16px - standard body, primary descriptions */
+    --text-lg: 1.125rem;   /* 18px - lead paragraphs, card titles, subheadings */
+    --text-xl: 1.25rem;    /* 20px - small section titles, logo */
+    --text-2xl: 1.5rem;    /* 24px - case study titles */
+    --text-3xl: 1.75rem;   /* 28px - main section headings */
+    --text-4xl: 2.25rem;   /* 36px - hero display title (H1) */
 }
 
 * {
@@ -28,9 +47,9 @@ body {
     background-color: var(--bg-page);
     color: var(--text-color);
     font-family: var(--font-body);
-    font-size: 16px;
+    font-size: var(--text-base);
     line-height: 1.6;
-    padding: 40px 20px;
+    padding: var(--space-48) var(--space-24);
 }
 
 .page-container {
@@ -40,33 +59,33 @@ body {
 
 /* Header */
 .main-header {
-    margin-bottom: 40px;
+    margin-bottom: var(--space-48);
 }
 
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: var(--space-12);
 }
 
 .logo-text {
     font-family: var(--font-heading);
     font-weight: 600;
-    font-size: 1.25rem;
+    font-size: var(--text-xl);
 }
 
 /* Hero Section */
 .hero-section {
     display: grid;
     grid-template-columns: 1.8fr 1fr;
-    gap: 24px;
-    margin-bottom: 32px;
+    gap: var(--space-24);
+    margin-bottom: var(--space-48);
 }
 
 .hero-left, .hero-right {
-    border-radius: 24px;
+    border-radius: var(--space-24);
     border: 2px solid var(--border-light-blue);
-    padding: 40px;
+    padding: var(--space-48);
 }
 
 .hero-left {
@@ -83,34 +102,34 @@ body {
     flex-direction: row;
     align-items: flex-start;
     text-align: left;
-    gap: 12px;
+    gap: var(--space-12);
 }
 
 .hero-title {
     font-family: var(--font-heading);
     font-weight: 600;
-    font-size: 2.25rem;
+    font-size: var(--text-4xl);
     line-height: 1.2;
-    margin-bottom: 24px;
+    margin-bottom: var(--space-24);
 }
 
 .hero-desc {
     font-family: var(--font-body);
-    font-size: 1.15rem;
-    margin-bottom: 32px;
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-32);
 }
 
 .hero-footer {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--space-8);
     font-family: var(--font-links);
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
 }
 
 .scroll-icon {
-    font-size: 1.2rem;
+    font-size: var(--text-lg);
 }
 
 .hero-avatar-large {
@@ -127,18 +146,17 @@ body {
 }
 
 .facts-title {
-    font-family: var(--font-heading);
+    font-family: var(--font-body);
     font-weight: 600;
-    font-size: 1.1rem;
-    margin-bottom: 16px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-size: var(--text-lg);
+    line-height: 1.3;
+    margin-bottom: var(--space-16);
 }
 
 .facts-text-p {
     font-family: var(--font-body);
-    font-size: 0.95rem;
-    margin-bottom: 12px;
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-12);
     line-height: 1.5;
 }
 
@@ -150,40 +168,40 @@ body {
 .philosophy-section {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-bottom: 56px;
+    gap: var(--space-24);
+    margin-bottom: var(--space-48);
 }
 
 .phil-card {
     background-color: var(--bg-card-white);
     border: 2px solid var(--border-dark-blue);
-    border-radius: 24px;
-    padding: 32px;
+    border-radius: var(--space-24);
+    padding: var(--space-32);
     display: flex;
     flex-direction: column;
 }
 
 .phil-card-title {
-    font-family: var(--font-heading);
+    font-family: var(--font-body);
     font-weight: 600;
-    font-size: 1.15rem;
+    font-size: var(--text-lg);
     line-height: 1.3;
-    margin-bottom: 16px;
+    margin-bottom: var(--space-16);
 }
 
 .phil-card-desc {
     font-family: var(--font-body);
-    font-size: 0.95rem;
-    margin-bottom: 16px;
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-16);
     flex-grow: 1;
 }
 
 /* Custom layout rows for links with vertically top-aligned emojis */
 .link-row {
     display: flex;
-    gap: 8px;
+    gap: var(--space-8);
     font-family: var(--font-body);
-    font-size: 0.95rem;
+    font-size: var(--text-sm);
     color: var(--text-color);
 }
 
@@ -192,7 +210,7 @@ body {
 }
 
 .link-emoji {
-    font-size: 1.15rem;
+    font-size: var(--text-lg);
     line-height: 1;
 }
 
@@ -202,13 +220,37 @@ body {
 
 .bold-link {
     font-family: var(--font-links);
-    font-weight: bold;
+    font-weight: 600;
     color: var(--text-color);
     text-decoration: underline;
+    transition: opacity 0.2s ease;
+}
+
+.bold-link:hover {
+    opacity: 0.8;
+}
+
+/* Accessibility: Keyboard Focus Indicators (WCAG 2.4.7) */
+a:focus-visible {
+    outline: 2px solid var(--border-dark-blue);
+    outline-offset: 4px;
+    border-radius: var(--space-4);
+}
+
+/* Accessibility: Respect Reduced Motion Preferences (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
 
 .squiggle-img-container {
-    margin-top: 16px;
+    margin-top: var(--space-16);
     text-align: center;
 }
 
@@ -221,8 +263,8 @@ body {
 .section-heading {
     font-family: var(--font-heading);
     font-weight: 600;
-    font-size: 1.75rem;
-    margin-bottom: 32px;
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-32);
     line-height: 1.3;
 }
 
@@ -230,13 +272,13 @@ body {
 .case-studies-section {
     display: flex;
     flex-direction: column;
-    gap: 32px;
-    margin-bottom: 56px;
+    gap: var(--space-32);
+    margin-bottom: var(--space-48);
 }
 
 .case-study-card {
     background-color: var(--bg-card-white);
-    border-radius: 24px;
+    border-radius: var(--space-24);
     display: grid;
     grid-template-columns: 1.2fr 1fr;
     overflow: hidden;
@@ -251,47 +293,45 @@ body {
 }
 
 .cs-content {
-    padding: 48px;
+    padding: var(--space-48);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .cs-title {
-    font-family: var(--font-heading);
+    font-family: var(--font-body);
     font-weight: 600;
-    font-size: 1.6rem;
+    font-size: var(--text-2xl);
     line-height: 1.25;
-    margin-bottom: 16px;
+    margin-bottom: var(--space-16);
 }
 
 .cs-desc {
     font-family: var(--font-body);
-    font-size: 1.05rem;
-    margin-bottom: 24px;
+    font-size: var(--text-base);
+    margin-bottom: var(--space-24);
 }
 
 .cs-bullets {
-    margin-bottom: 32px;
-    padding-left: 20px;
+    margin-bottom: var(--space-32);
+    padding-left: var(--space-24);
     font-family: var(--font-body);
 }
 
 .cs-bullets li {
-    margin-bottom: 8px;
+    margin-bottom: var(--space-8);
 }
 
 .cs-footer {
     display: flex;
     flex-direction: column;
-    gap: 8px;
 }
 
 .cs-tags {
     font-family: var(--font-links);
-    font-weight: 600;
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
+    font-weight: 500;
+    font-size: var(--text-sm);
     opacity: 0.8;
 }
 
@@ -300,7 +340,7 @@ body {
 }
 
 .cs-meta {
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
     opacity: 0.6;
 }
 
@@ -312,9 +352,8 @@ body {
     overflow: hidden;
 }
 
-/* Ensure at least 72px padding around the case study images */
 .cs-image-container.padded-graphic {
-    padding: 72px;
+    padding: var(--space-24);
     background-color: #ffffff;
 }
 
@@ -330,15 +369,15 @@ body {
 .testimonials-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-bottom: 56px;
+    gap: var(--space-24);
+    margin-bottom: var(--space-48);
 }
 
 .testimonial-card {
     background-color: var(--bg-card-white);
     border: 2px solid var(--border-light-blue);
-    border-radius: 24px;
-    padding: 32px;
+    border-radius: var(--space-24);
+    padding: var(--space-32);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -346,9 +385,9 @@ body {
 
 .t-text {
     font-family: var(--font-body);
-    font-size: 0.95rem;
+    font-size: var(--text-sm);
     line-height: 1.5;
-    margin-bottom: 24px;
+    margin-bottom: var(--space-24);
 }
 
 .t-text strong {
@@ -357,7 +396,7 @@ body {
 
 .t-author {
     font-family: var(--font-links);
-    font-size: 0.85rem;
+    font-size: var(--text-sm);
     line-height: 1.4;
 }
 
@@ -373,17 +412,17 @@ body {
 .experience-card, .earlier-experience-card {
     background-color: var(--bg-card-white);
     border: 2px solid var(--border-dark-blue);
-    border-radius: 24px;
-    padding: 48px;
-    margin-bottom: 56px;
+    border-radius: var(--space-24);
+    padding: var(--space-48);
+    margin-bottom: var(--space-48);
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: var(--space-48);
 }
 
 .job-item {
     border-bottom: 1px solid rgba(8, 72, 135, 0.1);
-    padding-bottom: 32px;
+    padding-bottom: var(--space-32);
 }
 
 .job-item:last-child {
@@ -394,20 +433,20 @@ body {
 .job-header {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: var(--space-12);
 }
 
 .job-title-group {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: var(--space-8);
     width: 100%;
 }
 
 .job-role {
-    font-family: var(--font-heading);
+    font-family: var(--font-body);
     font-weight: 600;
-    font-size: 1.25rem;
+    font-size: var(--text-lg);
 }
 
 /* Company and Date Row - Anchored Left & Right within the frame */
@@ -416,38 +455,38 @@ body {
     justify-content: space-between;
     align-items: baseline;
     width: 100%;
-    margin-bottom: 12px;
+    margin-bottom: var(--space-12);
 }
 
 .job-company {
     font-family: var(--font-links);
-    font-weight: 600;
-    font-size: 0.95rem;
+    font-weight: 500;
+    font-size: var(--text-sm);
     color: var(--border-dark-blue);
 }
 
 .job-dates {
     font-family: var(--font-links);
-    font-size: 0.95rem;
+    font-size: var(--text-sm);
     opacity: 0.7;
     white-space: nowrap;
 }
 
 .job-desc {
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: var(--text-base);
 }
 
 /* Earlier Experiences */
 .earlier-experience-card {
-    gap: 20px;
+    gap: var(--space-24);
 }
 
 .earlier-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 16px;
+    padding-bottom: var(--space-16);
     border-bottom: 1px solid rgba(8, 72, 135, 0.1);
 }
 
@@ -458,25 +497,26 @@ body {
 
 .earlier-role-group {
     display: flex;
-    gap: 8px;
+    gap: var(--space-8);
     align-items: baseline;
 }
 
 .earlier-role {
-    font-family: var(--font-heading);
+    font-family: var(--font-body);
     font-weight: 600;
-    font-size: 1.05rem;
+    font-size: var(--text-lg);
 }
 
 .earlier-company {
     font-family: var(--font-links);
-    font-size: 0.95rem;
-    opacity: 0.8;
+    font-weight: 500;
+    font-size: var(--text-sm);
+    color: var(--border-dark-blue);
 }
 
 .earlier-dates {
     font-family: var(--font-links);
-    font-size: 0.95rem;
+    font-size: var(--text-sm);
     opacity: 0.6;
     white-space: nowrap;
 }
@@ -484,11 +524,14 @@ body {
 /* Footer */
 .main-footer {
     text-align: center;
-    padding: 32px 0;
     font-family: var(--font-links);
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    margin-bottom: var(--space-48);
+}
+
+.footer-links {
+    margin-bottom: var(--space-16);
 }
 
 .footer-links a {
@@ -498,49 +541,39 @@ body {
 }
 
 .footer-copyright {
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
     opacity: 0.7;
 }
 
-/* RESPONSIVE DESIGN (<= 768px) */
-@media (max-width: 768px) {
-    body {
-        padding: 24px 16px;
-    }
-    
-    .hero-section {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-    
-    .hero-left, .hero-right {
-        padding: 24px;
-    }
-    
+/* ==========================================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+   ========================================================================== */
+
+/* 1. Breakpoint: 1034px - Only change "Some facts about me" to vertically stacked */
+@media (max-width: 1034px) {
     .hero-right {
         flex-direction: column;
-        text-align: left;
-        gap: 16px;
+        align-items: flex-start;
+        gap: var(--space-12);
     }
-    
-    .hero-title {
-        font-size: 1.75rem;
-    }
-    
+}
+
+/* 2. Breakpoint: 880px - Change philosophy section to vertical stacked behavior */
+@media (max-width: 880px) {
     .philosophy-section {
         grid-template-columns: 1fr;
-        gap: 16px;
+        gap: var(--space-24);
     }
-    
-    .phil-card {
-        padding: 24px;
-    }
-    
+}
+
+/* 3. Breakpoint: 780px - Change case studies to mobile behavior (image stacked on top) */
+@media (max-width: 780px) {
     .case-study-card {
         grid-template-columns: 1fr;
     }
     
-    .case-study-card.project-1, .case-study-card.project-2 {
+    .case-study-card.project-1, 
+    .case-study-card.project-2 {
         display: flex;
         flex-direction: column;
     }
@@ -551,44 +584,69 @@ body {
     }
     
     .cs-image-container.padded-graphic {
-        padding: 24px;
+        padding: var(--space-24);
     }
     
     .cs-content {
-        padding: 24px;
+        padding: var(--space-24);
     }
     
     .cs-title {
-        font-size: 1.35rem;
+        font-size: var(--text-xl);
+    }
+}
+
+/* 4. Mobile Layout (<= 768px) - Full page responsive adjustments */
+@media (max-width: 768px) {
+    body {
+        padding: var(--space-24) var(--space-12);
+    }
+    
+    .hero-section {
+        grid-template-columns: 1fr;
+        gap: var(--space-24);
+    }
+    
+    .hero-left, .hero-right {
+        padding: var(--space-24);
+    }
+    
+    .hero-title {
+        font-size: var(--text-3xl);
+    }
+    
+    .phil-card {
+        padding: var(--space-24);
     }
     
     .testimonials-grid {
         grid-template-columns: 1fr;
-        gap: 16px;
+        gap: var(--space-24);
     }
     
     .testimonial-card {
-        padding: 24px;
+        padding: var(--space-24);
     }
     
     .experience-card, .earlier-experience-card {
-        padding: 24px;
+        padding: var(--space-24);
+        gap: var(--space-24);
     }
     
     .company-date-row {
         flex-direction: column;
         align-items: flex-start;
-        gap: 4px;
+        gap: var(--space-4);
     }
     
     .earlier-item {
         flex-direction: column;
         align-items: flex-start;
-        gap: 4px;
+        gap: var(--space-4);
     }
     
     .earlier-role-group {
         flex-direction: column;
-        gap: 2px;
+        gap: var(--space-4);
     }
 }
