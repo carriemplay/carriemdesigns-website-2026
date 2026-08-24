@@ -348,7 +348,6 @@ a:focus-visible {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fafafa;
     overflow: hidden;
 }
 
