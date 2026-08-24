@@ -354,7 +354,6 @@ a:focus-visible {
 
 .cs-image-container.padded-graphic {
     padding: var(--space-24);
-    background-color: #ffffff;
 }
 
 .cs-img {
