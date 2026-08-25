@@ -415,7 +415,7 @@ a:focus-visible {
     margin-bottom: var(--space-48);
     display: flex;
     flex-direction: column;
-    gap: var(--space-48);
+    gap: var(--space-32);
 }
 
 .job-item {
@@ -477,7 +477,7 @@ a:focus-visible {
 
 /* Earlier Experiences */
 .earlier-experience-card {
-    gap: var(--space-24);
+    gap: var(--space-16);
 }
 
 .earlier-item {
