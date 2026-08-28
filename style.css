@@ -260,6 +260,30 @@ body {
      background-size: 0 2px, 100% 2px;
 }
 
+.bold-line {
+    transition: opacity 0.2s ease;
+    background:
+    linear-gradient(
+      to right,
+      rgba(128, 223, 232, 1),
+      rgba(128, 223, 232, 1)
+    ),
+    linear-gradient(
+      to right,
+      rgba(255, 0, 0, 1),
+      rgba(255, 0, 180, 1),
+      rgba(0, 100, 200, 1)
+  );
+  background-size: 100% 4px, 0 4px;
+  background-position: 100% 95%, 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 400ms;
+}
+
+.bold-line:hover {
+     background-size: 0 4px, 100% 4px;
+}
+
 /* Accessibility: Keyboard Focus Indicators (WCAG 2.4.7) */
 a:focus-visible {
     outline: 2px solid var(--border-dark-blue);
