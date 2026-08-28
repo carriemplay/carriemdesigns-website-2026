@@ -10,6 +10,7 @@
     --border-dark-blue: #084887;
     --border-orange: #E98D38;
     --border-green: #89CF11;
+    --border-alt-blue: #4F73E4;
     
     --font-heading: 'Poppins', sans-serif;
     --font-links: 'Avenir Next', Avenir, 'Helvetica Neue', sans-serif;
@@ -111,6 +112,10 @@ body {
     font-size: var(--text-4xl);
     line-height: 1.2;
     margin-bottom: var(--space-24);
+}
+
+.hero-subtitle {
+    margin-bottom: var(--space-12);
 }
 
 .hero-desc {
@@ -290,6 +295,10 @@ a:focus-visible {
 
 .case-study-card.project-2 {
     border: 2px solid var(--border-green);
+}
+
+.case-study-card.project-3 {
+    border: 2px solid var(--border-alt-blue);
 }
 
 .cs-content {
@@ -612,6 +621,7 @@ a:focus-visible {
     .hero-title {
         font-size: var(--text-3xl);
     }
+
     
     .phil-card {
         padding: var(--space-24);
