@@ -137,12 +137,21 @@ body {
     font-size: var(--text-lg);
 }
 
-.hero-avatar-large {
+.hero-avatar-img {
     width: 120px;
     height: 147px;
     object-fit: cover;
     flex-shrink: 0;
     border-radius: 0;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.hero-avatar-img:hover {
+    transform: rotate(1deg) translateY(-8px);
+    -webkit-transform: rotate(1deg) translateY(-8px);
+          -moz-transform: rotate(1deg) translateY(-8px);
+          -ms-transform: rotate(1deg) translateY(-8px);
+          -o-transform: rotate(1deg) translateY(-8px);
 }
 
 .facts-content {
@@ -227,12 +236,28 @@ body {
     font-family: var(--font-links);
     font-weight: 600;
     color: var(--text-color);
-    text-decoration: underline;
+    text-decoration: none;
     transition: opacity 0.2s ease;
+    background:
+    linear-gradient(
+      to right,
+      rgba(128, 223, 232, 1),
+      rgba(128, 223, 232, 1)
+    ),
+    linear-gradient(
+      to right,
+      rgba(255, 0, 0, 1),
+      rgba(255, 0, 180, 1),
+      rgba(0, 100, 200, 1)
+  );
+  background-size: 100% 2px, 0 2px;
+  background-position: 100% 100%, 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 400ms;
 }
 
 .bold-link:hover {
-    opacity: 0.8;
+     background-size: 0 2px, 100% 2px;
 }
 
 /* Accessibility: Keyboard Focus Indicators (WCAG 2.4.7) */
@@ -257,6 +282,11 @@ a:focus-visible {
 .squiggle-img-container {
     margin-top: var(--space-16);
     text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.squiggle-img-container:hover {
+    transform: scale(1.05);
 }
 
 .design-process-img {
@@ -370,7 +400,54 @@ a:focus-visible {
     width: auto;
     height: auto;
     object-fit: contain;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
+
+
+.cs-img:hover {
+    transform: rotate(-1deg) translateY(8px);
+      -webkit-transform: rotate(-1deg) translateY(8px);
+      -moz-transform: rotate(-1deg) translateY(8px);
+      -ms-transform: rotate(-1deg) translateY(8px);
+      -o-transform: rotate(-1deg) translateY(8px);
+}
+
+/* Leadership Cards Grid overrides */
+    .lead-card-visual {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+    }
+
+    .lead-card-text {
+        padding-bottom: 16px;
+    }
+
+    .lead-card-img-container {
+        width: 100%;
+        height: 180px;          /* Set a consistent height so cards remain even */
+        display: flex;
+        justify-content: center; /* Horizontally centers the image */
+        align-items: center;    /* Vertically centers the image */
+        /*overflow: hidden;*/
+    }
+
+    .lead-card-img {
+        width: 100%;            /* Keeps image at 50% container width */
+        height: 100%;          /* Constrains height to container */
+        object-fit: contain;   /* Scales the image without stretching or cropping */
+        transition: transform 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .lead-card-visual:hover .lead-card-img {
+        transform: rotate(1deg) translateY(-8px);
+          -webkit-transform: rotate(1deg) translateY(-8px);
+          -moz-transform: rotate(1deg) translateY(-8px);
+          -ms-transform: rotate(1deg) translateY(-8px);
+          -o-transform: rotate(1deg) translateY(-8px);
+    }
 
 /* Testimonials Grid */
 .testimonials-grid {
@@ -543,7 +620,7 @@ a:focus-visible {
 
 .footer-links a {
     color: var(--text-color);
-    text-decoration: underline;
+    text-decoration: none;
     font-weight: 600;
 }
 
