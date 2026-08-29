@@ -36,6 +36,14 @@
             <div class="logo-container">
                 <span class="logo-text"><span aria-hidden="true">👩🏻‍💻</span> Carrie Mah</span>
             </div>
+
+            <!-- Add Navigation Menu -->
+                <nav class="header-nav" aria-label="Main Navigation">
+                    <a href="#work" class="nav-link">work</a>
+                    <a href="#testimonials" class="nav-link">testimonials</a>
+                    <a href="#ai" class="nav-link">ai</a>
+                    <a href="#resume" class="nav-link">resume</a>
+                </nav>
         </header>
 
         <!-- Main Landmark for Screen Readers -->
@@ -52,13 +60,20 @@
                     </div>
                 </div>
                 <div class="hero-right">
-                    <img src="img/carriem_profile.png" alt="Portrait of Carrie Mah, Product Design Leader" class="hero-avatar-img" width="120" height="147">
-                    <div class="facts-content">
-                        <h2 class="facts-title">Some fun facts about me:</h2>
-                        <p class="facts-text-p">Calgary is my current home, but I lived in Montreal and travelled to 18+ countries 🌏 🌍 🌎</p>
-                        <p class="facts-text-p">I make junk journals by repurposing stickers and branded paper goods 📓 🎫 ✂️</p>
+                    <div class="hero-right-top">
+                        <img src="img/carriem_profile.png" alt="Portrait of Carrie Mah, Product Design Leader" class="hero-avatar-img" width="120" height="147">
+                        <div class="facts-content">
+                            <h2 class="facts-title">Some fun facts about me:</h2>
+                            <p class="facts-text-p">Calgary is my current home, but I lived in Montreal and travelled to 18+ countries 🌏 🌍 🌎</p>
+                            <p class="facts-text-p">I make junk journals by repurposing stickers and branded paper goods 📓 🎫 ✂️</p>
+                        </div>
+                    </div>
+                    <div class="hero-footer">
+                        <span class="scroll-icon" aria-hidden="true">⬇️</span>
+                        <a href="mailto:hello@carriemdesigns.com" target="_blank" rel="noopener noreferrer" class="bold-link">contact</a> for portfolio
                     </div>
                 </div>
+
             </section>
 
             <!-- Quick Philosophy Row -->
@@ -96,7 +111,7 @@
             </section>
 
             <!-- Section: Case Studies Title -->
-            <h2 class="section-heading">Products shaped by a leadership style with purpose, people and process:</h2>
+            <h2 id="work" class="section-heading">Products shaped by a leadership style with purpose, people and process:</h2>
 
             <!-- Case Studies -->
             <section class="case-studies-section" aria-label="Case Studies">
@@ -210,7 +225,7 @@ class="cs-img" loading="lazy">
                 </section>
 
         <!-- Section: Testimonials Title -->
-        <h2 class="section-heading">Kind words from collaborators</h2>
+        <h2 id="testimonials" class="section-heading">Kind words from collaborators</h2>
 
         <!-- Testimonials Grid -->
         <section class="testimonials-grid">
@@ -297,7 +312,7 @@ class="cs-img" loading="lazy">
         </section>
 
         <!-- Section: AI Systems I've Built -->
-        <h2 class="section-heading">Select AI systems I've built</h2>
+        <h2 id="ai" class="section-heading">Selected AI systems I've built</h2>
 
         <!-- AI Stat Strip -->
         <div class="ai-stat-strip">
@@ -323,8 +338,8 @@ class="cs-img" loading="lazy">
                 <div class="ai-insight-header">
                     <span class="ai-insight-icon">🗒️</span>
                     <div>
-                        <h3 class="ai-insight-title">Design to Specs</h3>
-                        <p class="ai-insight-tagline">Translate design files to human & machine-readable specs</p>
+                        <h3 class="ai-insight-title">Codified Design Specs</h3>
+                        <p class="ai-insight-tagline">Aligning designs to human and machine-readable specs</p>
                     </div>
                 </div>
                 <div class="ai-insight-body">
@@ -332,17 +347,15 @@ class="cs-img" loading="lazy">
                         <div class="ai-ba-col ai-ba-before">
                             <div class="ai-ba-label">Before</div>
                             <ul class="cs-bullets">
-                                <li>Cross-reference requirements manually</li>
-                                <li>Different spec shape every time</li>
-                                <li>Engineers pinged to address gaps</li>
+                                <li>Manually cross-reference designs with existing code base & requirements</li>
+                                <li>Multiple "source of truth" docs, leading to confused team members</li>
                             </ul>
                             <div class="ai-ba-effort">~3–4 hrs per flow with back-and-forth</div>
                         </div>
                         <div class="ai-ba-col ai-ba-after">
                             <div class="ai-ba-label">After</div>
                             <ul class="cs-bullets">
-                                <li>Synthesizes files using custom skills</li>
-                                <li>Specs generated for different audiences</li>
+                                <li>Synthesizes multiple files into audience-specific artifacts using custom skills</li>
                                 <li>Zero hallucinations with citations and open questions flagged</li>
                             </ul>
                             <div class="ai-ba-effort">~15 mins on two artifacts</div>
@@ -356,8 +369,8 @@ class="cs-img" loading="lazy">
                 <div class="ai-insight-header">
                     <span class="ai-insight-icon">🔍</span>
                     <div>
-                        <h3 class="ai-insight-title">Research Systems</h3>
-                        <p class="ai-insight-tagline">AI team reading multiple sources to catch contradictions and patterns</p>
+                        <h3 class="ai-insight-title">Design Enablement for Team Members</h3>
+                        <p class="ai-insight-tagline">Supporting teams with market research and design feedback</p>
                     </div>
                 </div>
                 <div class="ai-insight-body">
@@ -365,18 +378,16 @@ class="cs-img" loading="lazy">
                         <div class="ai-ba-col ai-ba-before">
                             <div class="ai-ba-label">Before</div>
                             <ul class="cs-bullets">
-                                <li>Manually extract screenshots from videos</li>
-                                <li>Cross-reference multiple sources</li>
-                                <li>Use market research templates</li>
+                                <li>Bottleneck with designers generating research reports</li>
+                                <li>Engineers blocked on updating prototypes after receiving feedback</li>
                             </ul> 
-                            <div class="ai-ba-effort">Several hours for 5–10 apps</div>
+                            <div class="ai-ba-effort">Several hours to several days</div>
                         </div>
                         <div class="ai-ba-col ai-ba-after">
                             <div class="ai-ba-label">After</div>
                             <ul class="cs-bullets">
-                                <li>AI agent orchestrator team with specific roles - synthesize or validate</li>
-                                <li>Audits compliance requirement gaps</li>
-                                <li>Generates research reports from videos</li>
+                                <li>AI agent orchestrator team with specific roles - synthesize, validate, audit designs, analyze gaps</li>
+                                <li>Enabling team members to generate industry benchmark reports and identify improvements based on product, design & customer feedback</li>
                             </ul> 
                             <div class="ai-ba-effort">~10 min for 11 apps</div>
                         </div>
@@ -385,69 +396,15 @@ class="cs-img" loading="lazy">
             </div>
         </section>
 
-        <!-- Section: Skills -->
-        <h2 class="section-heading">What sets me apart</h2>
-        <section class="skills-grid" aria-label="Core Skills">
-
-            <div class="skill-card">
-                <div class="skill-icon">🤖</div>
-                <h3 class="skill-title">AI-Native Product Design</h3>
-                <p class="skill-desc">Generating AI-native workflows, vibe coding, and designs with a Human-Computer Interactions, data viz, and systems thinking lens.</p>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-icon">🎯</div>
-                <h3 class="skill-title">Design Leadership &amp; People Management</h3>
-                <p class="skill-desc">Managed and mentored designers across enterprise environments through career roadmaps, performance reviews, and hiring cycles.</p>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-icon">💬</div>
-                <h3 class="skill-title">Research &amp; UX Strategy</h3>
-                <p class="skill-desc">Generated roadmaps with executive buy-in by facilitating discovery sprints, usability tests, user interviews, journey mapping, and guerrilla research.</p>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-icon">🧱</div>
-                <h3 class="skill-title">Design Systems &amp; Operations</h3>
-                <p class="skill-desc">Built scalable design systems, established UX dual-track agile operating models, and cut compliance agile delivery cycles from 4  to 1–2 months.</p>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-icon">👩🏻‍🏫</div>
-                <h3 class="skill-title">Workshop Facilitation &amp; Teaching</h3>
-                <p class="skill-desc">Facilitated design thinking & pitch workshops, co-created a UX Design course, and taught 100s of IBMers and learners design, creative coding, agentic prototyping, and workflow automation.</p>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-icon">🔒</div>
-                <h3 class="skill-title">Regulated &amp; Multi-Market Products</h3>
-                <p class="skill-desc">Launched products across NA, EU, APAC, and LATAM following compliance frameworks: GDPR, COPPA, WCAG AA, and fintech.</p>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-icon">🎤</div>
-                <h3 class="skill-title">Executive communication</h3>
-                <p class="skill-desc">Pitching ideas to executives, clients & investors while collaborating with cross-functional stakeholders to build B2B products.</p>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-icon">🤝</div>
-                <h3 class="skill-title">Cross-Functional Triad Partnerships</h3>
-                <p class="skill-desc">Equal strategic partner with Product and Engineering — roadmap planning, design workshops, and breaking silos across enterprise teams.</p>
-            </div>
-
-            <div class="skill-card">
-                <div class="skill-icon">🌻</div>
-                <h3 class="skill-title">Growth-oriented &amp; Adaptable</h3>
-                <p class="skill-desc">With over 15 years in tech, I can deliver customer-first outcomes by connecting the dots across the entire product lifecycle, multiple disciplines, and regulated industries.</p>
-            </div>
-
-        </section>
-
-
+    
         <!-- Section: Experience Title -->
-        <h2 class="section-heading">My experience</h2>
+        <h2 id="resume" class="section-heading">My experience</h2>
+
+        <!-- <div class="shadow-btn-container">
+        <a href="mah-carrie_resume-2026.pdf" target="_blank" class="shadow-btn-front">
+            Download Resume
+        </a> -->
+    </div>
 
         <!-- Experience Card -->
         <section class="experience-card">
@@ -598,6 +555,66 @@ class="cs-img" loading="lazy">
             </div>
         </section>
         </main>
+
+        <!-- Section: Skills -->
+        <h2 class="section-heading">What sets me apart</h2>
+        <section class="skills-grid" aria-label="Core Skills">
+
+            <div class="skill-card">
+                <div class="skill-icon">🤖</div>
+                <h3 class="skill-title">AI-Native Product Design</h3>
+                <p class="skill-desc">Generating AI-native workflows, vibe coding, and designs with a Human-Computer Interactions, data viz, and systems thinking lens.</p>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">🎯</div>
+                <h3 class="skill-title">Design Leadership &amp; People Management</h3>
+                <p class="skill-desc">Managed and mentored designers across enterprise environments through career roadmaps, performance reviews, and hiring cycles.</p>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">💬</div>
+                <h3 class="skill-title">Research &amp; UX Strategy</h3>
+                <p class="skill-desc">Generated roadmaps with executive buy-in by facilitating discovery sprints, usability tests, user interviews, journey mapping, and guerrilla research.</p>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">🧱</div>
+                <h3 class="skill-title">Design Systems &amp; Operations</h3>
+                <p class="skill-desc">Built scalable design systems, established UX dual-track agile operating models, and cut compliance agile delivery cycles from 4  to 1–2 months.</p>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">👩🏻‍🏫</div>
+                <h3 class="skill-title">Workshop Facilitation &amp; Teaching</h3>
+                <p class="skill-desc">Facilitated design thinking & pitch workshops, co-created a UX Design course, and taught 100s of IBMers and learners design, creative coding, agentic prototyping, and workflow automation.</p>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">🔒</div>
+                <h3 class="skill-title">Regulated &amp; Multi-Market Products</h3>
+                <p class="skill-desc">Launched products across NA, EU, APAC, and LATAM following compliance frameworks: GDPR, COPPA, WCAG AA, and fintech.</p>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">🎤</div>
+                <h3 class="skill-title">Executive communication</h3>
+                <p class="skill-desc">Pitching ideas to executives, clients & investors while collaborating with cross-functional stakeholders to build B2B products.</p>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">🤝</div>
+                <h3 class="skill-title">Cross-Functional Triad Partnerships</h3>
+                <p class="skill-desc">Equal strategic partner with Product and Engineering — roadmap planning, design workshops, and breaking silos across enterprise teams.</p>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">🌻</div>
+                <h3 class="skill-title">Growth-oriented &amp; Adaptable</h3>
+                <p class="skill-desc">With over 15 years in tech, I can deliver customer-first outcomes by connecting the dots across the entire product lifecycle, multiple disciplines, and regulated industries.</p>
+            </div>
+
+        </section>
 
         <!-- Footer -->
         <footer class="main-footer">

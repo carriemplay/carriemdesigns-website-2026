@@ -76,6 +76,79 @@ body {
     font-size: var(--text-xl);
 }
 
+/* Enable Smooth Scrolling sitewide */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Adjust this value to match your header height so headings aren't cut off at the top */
+}
+
+/* Header layout update to space out logo and navigation */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+    z-index: 100;
+}
+
+/* Nav Links Styles */
+.header-nav {
+    display: flex;
+    gap: var(--space-24);
+}
+
+.nav-link {
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
+    text-decoration: none;
+    color: var(--text-secondary, #4B565D);
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--main-primary, #084887);
+    transform: translateY(-1px);
+}
+
+/* The background shadow wrapper */
+.shadow-btn-container {
+    display: inline-block;
+    position: relative;
+    background-color: var(--border-light-blue); /* Shadow color */
+    border-radius: var(--space-12);
+    margin-bottom: var(--space-24);
+}
+
+/* The front outlined button */
+.shadow-btn-front {
+    display: inline-block;
+    padding: 12px 28px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: var(--text-sm);
+    text-decoration: none;
+    color: var(--text-primary, #1F2427);
+    background-color: #ffffff; /* Button color */
+    border: 2px solid var(--border-dark-blue);
+    border-radius: var(--space-12);
+
+    /* Starting offset (creates the 3D look) */
+    transform: translate(-4px, -4px);
+
+    /* Smooth animation */
+    transition: transform 0.15s cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* Hover: The button pushes flat into the shadow */
+.shadow-btn-container:hover .shadow-btn-front {
+    transform: translate(0px, 0px);
+}
+
+/* Active (Clicking): Pushes it firmly down */
+.shadow-btn-container:active .shadow-btn-front {
+    transform: translate(1px, 1px);
+}
+
 /* Hero Section */
 .hero-section {
     display: grid;
@@ -97,14 +170,23 @@ body {
     justify-content: space-between;
 }
 
-/* Facts card layout: horizontal, 12px gap, left-aligned text, raw image block */
+/* Facts card layout: column, image+facts row on top, contact pinned to bottom-left */
 .hero-right {
     background-color: var(--bg-card-blue);
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: flex-start;
     text-align: left;
     gap: var(--space-12);
+}
+
+.hero-right-top {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--space-12);
+    width: 100%;
 }
 
 .hero-title {
@@ -358,7 +440,7 @@ a:focus-visible {
 }
 
 .ai-stat-item + .ai-stat-item {
-    border-left: 1px solid var(--border-light-blue);
+    border-left: 1px solid var(--border-grey);
 }
 
 .ai-stat-num {
@@ -883,9 +965,9 @@ a:focus-visible {
    RESPONSIVE DESIGN BREAKPOINTS
    ========================================================================== */
 
-/* 1. Breakpoint: 1034px - Only change "Some facts about me" to vertically stacked */
+/* 1. Breakpoint: 1034px - Stack image and facts vertically inside hero-right */
 @media (max-width: 1034px) {
-    .hero-right {
+    .hero-right-top {
         flex-direction: column;
         align-items: flex-start;
         gap: var(--space-12);
