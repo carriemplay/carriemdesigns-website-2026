@@ -378,6 +378,10 @@ a:focus-visible {
     line-height: 1.4;
 }
 
+.ai-stat-item .phil-card-desc {
+    margin-bottom: 0;
+}
+
 /* AI Insights Grid — 2-column layout */
 .ai-insights-grid {
     display: grid;
@@ -890,7 +894,7 @@ a:focus-visible {
 
 /* 2. Breakpoint: 880px - Change philosophy section to vertical stacked behavior */
 @media (max-width: 880px) {
-    .philosophy-section {
+    .philosophy-section, .skills-grid {
         grid-template-columns: 1fr;
         gap: var(--space-24);
     }
@@ -950,12 +954,12 @@ a:focus-visible {
         padding: var(--space-24);
     }
     
-    .testimonials-grid {
+    .testimonials-grid, .ai-insights-grid {
         grid-template-columns: 1fr;
         gap: var(--space-24);
     }
     
-    .testimonial-card {
+    .testimonial-cardm .ai-insight-card {
         padding: var(--space-24);
     }
     
@@ -980,4 +984,18 @@ a:focus-visible {
         flex-direction: column;
         gap: var(--space-4);
     }
+}
+
+@media (max-width: 768px) {
+
+    .ai-stat-num {
+        font-size: var(--text-lg);
+    }
+
+    .ai-stat-item {
+        padding: var(--space-12);
+    }
+
+    .ai-stat-item .phil-card-desc {
+        font-size: var(--text-xs);
 }
