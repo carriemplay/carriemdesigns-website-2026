@@ -74,6 +74,14 @@ body {
     font-family: var(--font-heading);
     font-weight: 600;
     font-size: var(--text-xl);
+    text-decoration: none;
+    color: var(--text-secondary, #4B565D);
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.logo-text:hover {
+    color: var(--main-primary, #084887);
+    transform: translateY(-1px);
 }
 
 /* Enable Smooth Scrolling sitewide */
