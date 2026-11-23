@@ -13,6 +13,23 @@
   }
 
   /* ------------------------------------------------------------------------
+     1b. Shared HTML Partials (footer.html)
+     ------------------------------------------------------------------------ */
+  document.querySelectorAll('[data-include]').forEach((placeholder) => {
+    const src = placeholder.dataset.include;
+    if (!src) return;
+
+    fetch(src)
+      .then((res) => (res.ok ? res.text() : ''))
+      .then((html) => {
+        if (html) {
+          placeholder.outerHTML = html;
+        }
+      })
+      .catch(() => {});
+  });
+
+  /* ------------------------------------------------------------------------
      2. Image Placeholder Graceful Reveal (Zero Broken Icons)
      ------------------------------------------------------------------------ */
   const mediaImages = document.querySelectorAll('.media-frame__img');
@@ -66,6 +83,55 @@
     });
   }
 
+  /* Before / After segmented toggle (supports optional beat selector) */
+  document.querySelectorAll('[data-before-after]').forEach((container) => {
+    const beatButtons = container.querySelectorAll('[data-ba-beat-btn]');
+    const stateTabs = container.querySelectorAll('[data-ba-target]');
+    const panes = container.querySelectorAll('[data-ba-pane]');
+    const figure = container.closest('figure');
+    const caption = figure ? figure.querySelector('.slide-stage__caption') : null;
+
+    let activeBeat = beatButtons.length ? (container.querySelector('[data-ba-beat-btn].is-active')?.dataset.baBeatBtn || beatButtons[0].dataset.baBeatBtn) : null;
+    let activeState = container.querySelector('[data-ba-target].is-active')?.dataset.baTarget || 'after';
+
+    const syncView = () => {
+      beatButtons.forEach((btn) => {
+        const isCurrent = btn.dataset.baBeatBtn === activeBeat;
+        btn.classList.toggle('is-active', isCurrent);
+        btn.setAttribute('aria-pressed', isCurrent ? 'true' : 'false');
+      });
+      stateTabs.forEach((tab) => {
+        const isCurrent = tab.dataset.baTarget === activeState;
+        tab.classList.toggle('is-active', isCurrent);
+        tab.setAttribute('aria-pressed', isCurrent ? 'true' : 'false');
+      });
+      panes.forEach((pane) => {
+        const beatMatch = !activeBeat || pane.dataset.baBeat === activeBeat;
+        const isCurrent = beatMatch && pane.dataset.baPane === activeState;
+        pane.classList.toggle('is-active', isCurrent);
+        if (isCurrent && caption) {
+          const media = pane.querySelector('img[alt], video[aria-label]');
+          const label = media ? (media.getAttribute('alt') || media.getAttribute('aria-label')) : '';
+          if (label) caption.textContent = label;
+        }
+      });
+    };
+
+    beatButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        activeBeat = btn.dataset.baBeatBtn;
+        syncView();
+      });
+    });
+
+    stateTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        activeState = tab.dataset.baTarget;
+        syncView();
+      });
+    });
+  });
+
   /* ------------------------------------------------------------------------
      3. Mobile Navigation Toggle
      ------------------------------------------------------------------------ */
@@ -93,62 +159,47 @@
   }
 
   /* ------------------------------------------------------------------------
-     4. Contact Form Mailto Submission (contact.html)
+     4. Obfuscated Email Actions (contact.html & portfolio.html)
      ------------------------------------------------------------------------ */
-  const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    const nameInput = document.getElementById('contact-name');
-    const emailInput = document.getElementById('contact-email');
-    const messageInput = document.getElementById('contact-message');
-    const contactError = document.getElementById('contact-error');
-    const contactFeedback = document.getElementById('contact-feedback');
-    const fallbackMailtoLink = document.getElementById('contact-fallback-link');
+  function getContactEmail() {
+    const user = ['c', 'o', 'n', 't', 'a', 'c', 't'].join('');
+    const domain = ['c', 'a', 'r', 'r', 'i', 'e', 'm', 'a', 'h'].join('');
+    const tld = ['c', 'o', 'm'].join('');
+    return `${user}@${domain}.${tld}`;
+  }
 
-    contactForm.addEventListener('submit', (event) => {
-      event.preventDefault();
+  const emailOpenBtn = document.getElementById('email-open-btn');
+  const emailCopyBtn = document.getElementById('email-copy-btn');
+  const contactFeedback = document.getElementById('contact-feedback');
+  const contactFeedbackText = document.getElementById('contact-feedback-text');
 
-      const nameVal = nameInput ? nameInput.value.trim() : '';
-      const emailVal = emailInput ? emailInput.value.trim() : '';
-      const messageVal = messageInput ? messageInput.value.trim() : '';
-      const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
-
-      if (!nameVal || !emailVal || !emailValid || !messageVal) {
-        if (contactError) {
-          contactError.hidden = false;
-        }
-        if (!nameVal && nameInput) nameInput.focus();
-        else if ((!emailVal || !emailValid) && emailInput) emailInput.focus();
-        else if (!messageVal && messageInput) messageInput.focus();
-        return;
-      }
-
-      if (contactError) {
-        contactError.hidden = true;
-      }
-
-      const subject = 'New message from carriemdesigns.com';
-      const body = `From: ${emailVal} (${nameVal})\n\n${messageVal}`;
-      const mailtoHref = `mailto:contact@carriemah.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-      if (fallbackMailtoLink) {
-        fallbackMailtoLink.href = mailtoHref;
-      }
-      if (contactFeedback) {
-        contactFeedback.hidden = false;
-      }
-
-      window.location.href = mailtoHref;
-    });
-
-    [nameInput, emailInput, messageInput].forEach((field) => {
-      if (!field) return;
-      field.addEventListener('input', () => {
-        if (contactError && !contactError.hidden) {
-          contactError.hidden = true;
-        }
-      });
+  if (emailOpenBtn) {
+    emailOpenBtn.addEventListener('click', () => {
+      const address = getContactEmail();
+      window.location.href = `mailto:${address}?subject=${encodeURIComponent('Hello from carriemdesigns.com')}`;
     });
   }
+
+  if (emailCopyBtn) {
+    emailCopyBtn.addEventListener('click', () => {
+      const address = getContactEmail();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(address).then(() => {
+          if (contactFeedback && contactFeedbackText) {
+            contactFeedbackText.textContent = 'Email address copied to clipboard.';
+            contactFeedback.hidden = false;
+          }
+        }).catch(() => {});
+      }
+    });
+  }
+
+  document.querySelectorAll('[data-email-link]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      window.location.href = `mailto:${getContactEmail()}?subject=${encodeURIComponent('Portfolio password request')}`;
+    });
+  });
 
   /* ------------------------------------------------------------------------
      5. Portfolio Password Gate & Presentation Deck (portfolio.html)
