@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carrie Mah — Staff Product Designer &amp; Design Manager</title>
+  <style>
+    @page {
+      size: letter;
+      margin: 0.45in 0.5in;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 9pt;
+      line-height: 1.4;
+      color: #000000;
+      background: #ffffff;
+    }
+
+    .resume-container {
+      max-width: 7.5in;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 6px;
+    }
+
+    .header-left h1 {
+      font-size: 19pt;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #000000;
+    }
+
+    .header-left .role-title {
+      font-size: 10.5pt;
+      font-weight: 500;
+      color: #000000;
+      margin-top: 2px;
+    }
+
+    .header-right {
+      text-align: right;
+      font-size: 8.5pt;
+      line-height: 1.4;
+      color: #656d76;
+      flex-shrink: 0;
+    }
+
+    .header-right a {
+      color: #656d76;
+      text-decoration: none;
+      display: block;
+    }
+
+    .header-right a:hover {
+      text-decoration: underline;
+    }
+
+    /* Inline Skill List (Single Line Metadata) */
+    .skill-list {
+      font-size: 8.5pt;
+      color: #656d76;
+      line-height: 1.4;
+      margin-bottom: 8px;
+      white-space: nowrap;
+    }
+
+    .skill-list .sep {
+      color: #8c959f;
+      margin: 0 5px;
+    }
+
+    /* Executive Summary */
+    .summary {
+      font-size: 9pt;
+      line-height: 1.4;
+      color: #000000;
+      margin-bottom: 18px;
+    }
+
+    .summary p {
+      margin-bottom: 4px;
+    }
+
+    /* Section Headings */
+    h2.section-heading {
+      font-size: 9.5pt;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #000000;
+      border-bottom: 1px solid #d0d7de;
+      padding-bottom: 3px;
+      margin-top: 18px;
+      margin-bottom: 8px;
+    }
+
+    /* Role Blocks */
+    .role-block {
+      margin-bottom: 16px;
+    }
+
+    .role-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .role-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .role-title-company {
+      font-size: 9.5pt;
+      font-weight: 600;
+      color: #000000;
+    }
+
+    .role-company {
+      font-weight: 500;
+      color: #000000;
+    }
+
+    .role-meta {
+      font-size: 8.5pt;
+      color: #656d76;
+      text-align: right;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .role-subrow {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-top: 1px;
+      margin-bottom: 4px;
+    }
+
+    .role-context {
+      font-style: italic;
+      font-size: 8.5pt;
+      color: #656d76;
+    }
+
+    /* Bullet Lists */
+    ul.bullets {
+      list-style: disc;
+      padding-left: 14px;
+      margin: 0;
+    }
+
+    ul.bullets li {
+      margin-bottom: 3.5px;
+      padding-left: 1px;
+    }
+
+    ul.bullets li:last-child {
+      margin-bottom: 0;
+    }
+
+    ul.bullets li strong {
+      font-weight: 500;
+      color: #000000;
+    }
+
+    /* Bottom 2-Column Grid */
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .bottom-col h2.section-heading {
+      margin-top: 0;
+    }
+
+    .edu-item {
+      margin-bottom: 4px;
+    }
+
+    .edu-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .edu-degree {
+      font-weight: 600;
+      color: #000000;
+    }
+
+    .edu-school {
+      font-weight: 500;
+      color: #000000;
+    }
+
+    .edu-detail {
+      font-size: 9pt;
+      color: #000000;
+      margin-top: 1px;
+    }
+
+    .edu-detail strong {
+      font-weight: 500;
+      color: #000000;
+    }
+
+    .skill-group {
+      margin-bottom: 4px;
+      font-size: 9pt;
+      color: #000000;
+    }
+
+    .skill-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .skill-group strong {
+      font-weight: 500;
+      color: #000000;
+    }
+
+    /* Print Break Control */
+    @media print {
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      h2.section-heading,
+      .role-header,
+      .role-subrow,
+      .role-context {
+        break-after: avoid;
+        page-break-after: avoid;
+      }
+
+      .role-block.short-role,
+      .edu-item,
+      .skill-group,
+      .bottom-grid,
+      ul.bullets li {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+    }
+
+    @media screen {
+      body {
+        background: #f3f4f6;
+        padding: 24px 16px;
+      }
+
+      .resume-container {
+        background: #ffffff;
+        padding: 0.45in 0.5in;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="resume-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <h1>Carrie Mah</h1>
+        <div class="role-title">Staff Product Designer &amp; Design Manager</div>
+      </div>
+      <div class="header-right">
+        <a href="https://carriemdesigns.com">carriemdesigns.com</a>
+        <a href="https://carriemdesigns.com/portfolio.html">Portfolio [email for password]</a>
+        <a href="mailto:contact@carriemah.com">contact@carriemah.com</a>
+      </div>
+    </header>
+
+    <!-- Core Competencies (Single Line) -->
+    <div class="skill-list" aria-label="Core Competencies">
+      Product Strategy<span class="sep">·</span>Product Management<span class="sep">·</span>Enterprise B2B &amp; Tools UX Design<span class="sep">·</span>Regulatory Compliance<span class="sep">·</span>AI Workflows
+    </div>
+
+    <!-- Executive Summary -->
+    <section class="summary" aria-label="Executive Summary">
+      <p>Staff Product Designer &amp; Design Manager with 10+ yrs shipping regulated B2B platforms, 
+        global compliance systems, and AI workflows across NA, EU, APAC, and LATAM (15+ yrs in tech).</p>
+      <ul class="bullets">
+        <li><strong>Product Strategy &amp; Leadership:</strong> Stepped in as Interim PM across 
+          3 pods at Fortis Games (16 to 4–8 wk delivery). At IBM iX, co-led a 3-year roadmap securing executive 
+          investment and launching 3+ products.</li>
+        <li><strong>Systems Thinking:</strong> Shipped WCAG AA design systems, 
+          self-serve B2B products, +7.8% onboarding conversion, served 4M+ users with Purolator's AI chatbot,
+          and 4x faster with 85+ Claude skills.</li>
+        <li><strong>People &amp; Practice:</strong> Formally managed direct reports, coached designers Junior to Staff, 
+          and co-created a certified UX/UI micro-credential course. Backed by a BSc in Computer Science (HCI).</li>
+      </ul>
+    </section>
+
+    <!-- Experience -->
+    <section aria-labelledby="exp-heading">
+      <h2 id="exp-heading" class="section-heading">Experience</h2>
+
+      <article class="role-block">
+        <div class="role-header">
+          <div class="role-title-company">Staff Product Designer &amp; Design Manager <span class="role-company">· Fortis Games</span></div>
+          <div class="role-meta">Apr 2024 – Nov 2026</div>
+        </div>
+        <div class="role-subrow">
+          <div class="role-context">Platform web, Unity, and internal tools for game teams</div>
+          <div class="role-meta">Canada (Remote, Full-Time)</div>
+        </div>
+        <ul class="bullets">
+          <li><strong>Interim PM &amp; UX leadership:</strong> Co-led product design across 3 pods as interim PM and UX Director, managing team operations,
+rituals, resource allocation, and roadmap reporting across 3 pods.</li>
+          <li><strong>Product triad ops:</strong> Replaced ad-hoc triage with 70% sprint goals, 30% Kanban, 
+            and triad syncs—cutting compliance delivery (16 to 4–8 wks), lifting confidence (2 to 3.7/5), and improving sentiment in 2 quarters.</li>
+          <li><strong>Global compliance architecture:</strong> Unified compliance SDK bootflow and self-serve guides 
+            across NA, EU, APAC, and LATAM, unblocking 5+ Unity/web launches; improving integration from weeks to days.</li>
+          <li><strong>Conversion &amp; optimization:</strong> Partnered with Data Science and Staff Designers to fix a 
+            14.7% age gate drop-off by leading an A/B test (+7.8% onboarding conversion) and 4.58% GDPR drop-off (&lt;5% target).</li>
+          <li><strong>Regulated workflow tooling:</strong> Reframed regional compliance around Legal's spreadsheet workflow, 
+            coaching an Intermediate Designer to ship bulk upload and versioned policy tools; setup cut from weeks to minutes for EU, US COPPA/Texas and Brazil.</li>
+          <li><strong>AI workflows &amp; MCP systems:</strong> Built 85+ modular Claude skills and custom MCP gateway, 
+            cutting prototyping by 4x (8 to 2 days), token bloat (43% to ~18%), and upskilling 11 designers via AI sessions.</li>
+          <li><strong>People management &amp; hiring:</strong> Managed direct reports for 8 months, coaching an Intermediate Designer 
+            to senior autonomy via 1:1s and career plans; created interview rubrics and led 6 hiring cycles.</li>
+          <li>Led AI guardrail standards with Engineering to move a vibe-coded tool to a secure enterprise platform.</li>
+          <li>Defined sitemap &amp; design system, coaching a Junior Designer on Sanity CMS templates and web design.</li>
+          <li>Led design for Fortis ID account onboarding, recovery, and integration flows protecting player progress.</li>
+        </ul>
+      </article>
+
+      <article class="role-block short-role">
+        <div class="role-header">
+          <div class="role-title-company">Senior Product Designer <span class="role-company">· ATB Financial</span></div>
+          <div class="role-meta">Oct 2023 – Apr 2024</div>
+        </div>
+        <div class="role-subrow">
+          <div class="role-context">B2C web and mobile app for retail banking</div>
+          <div class="role-meta">Calgary, Canada (Hybrid, Contract)</div>
+        </div>
+        <ul class="bullets">
+          <li>Led self-serve credit card management across web, iOS, and Android in a regulated environment.</li>
+          <li>Presented UX assessment frameworks to leadership to guide vendor selection for 680k+ users.</li>
+          <li>Trained junior to senior designers on user interviews, usability testing, and journey mapping.</li>
+        </ul>
+      </article>
+
+      <article class="role-block short-role">
+        <div class="role-header">
+          <div class="role-title-company">Senior Product Designer <span class="role-company">· Clearco</span></div>
+          <div class="role-meta">Nov 2021 – Jun 2022</div>
+        </div>
+        <div class="role-subrow">
+          <div class="role-context">B2B web app for entrepreneur onboarding in NA and EU</div>
+          <div class="role-meta">Canada (Remote, Full-time)</div>
+        </div>
+        <ul class="bullets">
+          <li>Led onboarding redesign and EU-compliant flows for Germany launch, partnering with Support to 
+            cut drop-off and drive an estimated $2.5M+ annual revenue.</li>
+          <li>Updated core design system components, built Marketing feedback loops during a rebrand, 
+            and mentored a Senior Marketing Designer into Product Design.</li>
+        </ul>
+      </article>
+
+      <article class="role-block short-role">
+        <div class="role-header">
+          <div class="role-title-company">Senior Product Designer <span class="role-company">· Metrio</span></div>
+          <div class="role-meta">Apr 2021 – Jul 2021</div>
+        </div>
+        <div class="role-subrow">
+          <div class="role-context">B2B SaaS web app for sustainability reporting</div>
+          <div class="role-meta">Canada (Remote, Full-time)</div>
+        </div>
+        <ul class="bullets">
+          <li>Led qualitative research, refining roadmap and investor deck to simplify compliance-driven ESG reporting.</li>
+        </ul>
+      </article>
+
+      <article class="role-block">
+        <div class="role-header">
+          <div class="role-title-company">Customer Experience Design (CXD) Consultant <span class="role-company">· IBM iX</span></div>
+          <div class="role-meta">Apr 2019 – Mar 2021</div>
+        </div>
+        <div class="role-subrow">
+          <div class="role-context">Enterprise consultancy redesigning web apps and digital services</div>
+          <div class="role-meta">Canada (Hybrid, Full-time)</div>
+        </div>
+        <ul class="bullets">
+          <li><strong>Product Strategy (Nutrien):</strong> Co-led strategy and product design unifying two legacy systems; 
+            synthesized 40+ interviews into 3 personas, prioritized 14+ initiatives, and secured 3-year roadmap investment.</li>
+          <li><strong>Enterprise platform design (Nutrien):</strong> Led design on a responsive web platform, 3+ self-serve B2B products, 
+            and a WCAG AA Storybook design system using Dual-Track Agile; cutting support dependency.</li>
+          <li><strong>Conversational AI design (Purolator &amp; Canada Post):</strong> Led brand design and voice guidelines for a Purolator Virtual Assistant, serving 4M+ users; 
+            designed chatbot concepts for customer queries and agent-assist handoffs, receiving an IBM Delivery Excellence Award while unlocking executive funding.</li>
+          <li><strong>Roadmap (BC Government):</strong> Co-led remote discovery workshops and analyzed 700+ data points in &lt;3 weeks for a provincial pandemic recovery roadmap.</li>
+          <li><strong>Practice Leadership:</strong> Managed 10 junior marketing designers, built a 20-person Canada CXD community, 
+            and taught workshops to 100+ IBMers (4.8/5 rating).</li>
+        </ul>
+      </article>
+
+      <article class="role-block short-role">
+        <div class="role-header">
+          <div class="role-title-company">Product Designer <span class="role-company">· ATB Financial</span></div>
+          <div class="role-meta">Jan 2018 – Jan 2019</div>
+        </div>
+        <div class="role-subrow">
+          <div class="role-context">B2B web banking platform for Alberta small and medium businesses</div>
+          <div class="role-meta">Calgary, Canada (Hybrid, Contract)</div>
+        </div>
+        <ul class="bullets">
+          <li>Redesigned core SMB web banking workflows during an agile transformation, contributing to 
+            ATB's Forrester Canada CX Index recognition (Elite CX Brands, 2019).</li>
+        </ul>
+      </article>
+
+      <article class="role-block short-role">
+        <div class="role-header">
+          <div class="role-title-company">Product Designer <span class="role-company">· H&amp;R Block Canada</span></div>
+          <div class="role-meta">May 2016 – Aug 2017</div>
+        </div>
+        <div class="role-subrow">
+          <div class="role-context">B2C tax filing web app for Canadian consumers</div>
+          <div class="role-meta">Calgary, Canada (Hybrid, Contract)</div>
+        </div>
+        <ul class="bullets">
+          <li>Redesigned outdated forms using customer feedback, design system, and frontend code to drive a 300%+ revenue increase from the 2016 tax web app.</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- Leadership, Teaching & Community -->
+    <section aria-labelledby="lead-heading">
+      <h2 id="lead-heading" class="section-heading">Leadership, Teaching &amp; Community</h2>
+      <ul class="bullets">
+        <li><strong>Carrie M Designs, Founder &amp; Principal Consultant (since Oct 2022):</strong> 
+          Hired &amp; onboarded Senior PM improving an agency's ops/time tracking; 
+          speaker on UX design careers and burnout recovery.</li>
+        <li><strong>Bow Valley College, Curriculum Developer &amp; Facilitator (2022; 2025):</strong> 
+          Co-created a certified UX/UI micro-credential course; facilitated pitch workshops for early-stage founders.</li>
+        <li><strong>Fortis Games Pride Guild, Events Lead (2025 – 2026):</strong> 
+          Mentored ERG leaders and led workshops to build an AI digital zine site for 30+ members.</li>
+        <li><strong>IBM Canada Bee Green, Design Lead (2020 - 2021):</strong> 
+          Managed 10 designers across sustainability projects and 50+ page handbook by establishing shared design guidelines.</li>
+        <li><strong>Chic Geek, Digital Marketing &amp; Project Lead (2017 – 2021):</strong> 
+          Led a 4-person team for infographic design and reviewwed ops for 8 writers &amp; 4 designers (+30% social following).</li>
+        <li><strong>Canada Learning Code  &amp; Steam Learning Code, Lead Instructor (2013-2019):</strong> 
+          Taught 100+ adults, children, and educators on creative coding.</li>
+        <li><strong>Always Be Creative Club, Founder (since Mar 2026):</strong> 
+          Built a creative community helping 70+ adults recover from burnout and rediscover a creative identity 
+          using analog play and upcycled collage materials.</li>
+        <li><strong>Recognition:</strong> 
+          Alberta Premier Citizenship Award, CTV Volunteer in Profile, IBM Volunteers Silver Award.</li>
+      </ul>
+    </section>
+
+    <!-- Bottom 2-Column Grid: Education & Training + Additional Skills -->
+    <div class="bottom-grid">
+      <section class="bottom-col" aria-labelledby="edu-heading">
+        <h2 id="edu-heading" class="section-heading">Education &amp; Training</h2>
+        <div class="edu-item">
+          <div><span class="edu-degree">BSc in Computer Science</span> <span class="edu-school">· University of Calgary</span> (Jun 2017)</div>
+          <div class="edu-detail">Concentration: HCI · Minor: Visual Studies.</div>
+          <div class="edu-detail">Co-authored data visualization papers with Dr. Sheelagh Carpendale's PhD students; presented visual nutrition workshop paper.</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-detail"><strong>Professional Training:</strong> IBM Leadership Academy (Ivey Business School, 2020) · Service Design &amp; Experience Mapping (Akendi Inc, 2019)</div>
+        </div>
+      </section>
+
+      <section class="bottom-col" aria-labelledby="skills-heading">
+        <h2 id="skills-heading" class="section-heading">Additional Skills</h2>
+        <div class="skill-group">
+          <strong>Strategy &amp; Leadership:</strong> Product Strategy, Design Management, Interim PM, Dual-Track Agile, Hiring Rubrics, Coaching, Internationalization, Regulatory Compliance, Design Systems (WCAG AA), AI Workflows &amp; Guardrails
+        </div>
+        <div class="skill-group">
+          <strong>Tools:</strong> Claude Code, Gemini, Figma, Storybook, Sanity CMS, HTML5/CSS3, Jira, ClickUp, Miro, Notion
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
