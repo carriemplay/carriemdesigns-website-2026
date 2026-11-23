@@ -2,9 +2,9 @@
   'use strict';
 
   /* ------------------------------------------------------------------------
-     1. Configuration (Update VALID_PASSWORDS before deploying)
+     1. Configuration
      ------------------------------------------------------------------------ */
-  const VALID_PASSWORDS = ['carriemah2026', 'portfolio', 'nda'];
+  const ENCRYPTED_DECKS_URL = './assets/data/slides.enc.json';
   const STORAGE_KEY = 'carriemah_portfolio_unlocked';
   const XL_DECK_QUERY = '(min-width: 1440px) and (min-height: 1080px)';
 
@@ -32,105 +32,111 @@
   /* ------------------------------------------------------------------------
      2. Image Placeholder Graceful Reveal (Zero Broken Icons)
      ------------------------------------------------------------------------ */
-  const mediaImages = document.querySelectorAll('.media-frame__img');
-  mediaImages.forEach((img) => {
-    const frame = img.closest('.media-frame');
-    if (!frame) return;
-
-    const markLoaded = () => {
-      if (img.naturalWidth > 0) {
-        frame.classList.add('is-loaded');
-      }
-    };
-
-    if (img.complete && img.naturalWidth > 0) {
-      markLoaded();
-    } else {
-      img.addEventListener('load', markLoaded, { once: true });
-      img.addEventListener('error', () => {
-        frame.classList.remove('is-loaded');
-      }, { once: true });
-    }
-  });
-
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const mediaVideos = document.querySelectorAll('.media-frame__video');
-  mediaVideos.forEach((video) => {
-    const frame = video.closest('.media-frame');
-    if (!frame) return;
 
-    const markLoaded = () => {
-      frame.classList.add('is-loaded');
-      if (prefersReducedMotion) {
-        video.pause();
+  function initMediaReveal(root = document) {
+    root.querySelectorAll('.media-frame__img').forEach((img) => {
+      const frame = img.closest('.media-frame');
+      if (!frame) return;
+
+      const markLoaded = () => {
+        if (img.naturalWidth > 0) {
+          frame.classList.add('is-loaded');
+        }
+      };
+
+      if (img.complete && img.naturalWidth > 0) {
+        markLoaded();
+      } else {
+        img.addEventListener('load', markLoaded, { once: true });
+        img.addEventListener('error', () => {
+          frame.classList.remove('is-loaded');
+        }, { once: true });
       }
-    };
-
-    if (video.readyState >= 2) {
-      markLoaded();
-    } else {
-      video.addEventListener('loadeddata', markLoaded, { once: true });
-      video.addEventListener('canplay', markLoaded, { once: true });
-      video.addEventListener('error', () => {
-        frame.classList.remove('is-loaded');
-      }, { once: true });
-    }
-  });
-
-  if (prefersReducedMotion) {
-    document.querySelectorAll('.product-media__video').forEach((video) => {
-      video.pause();
     });
+
+    root.querySelectorAll('.media-frame__video').forEach((video) => {
+      const frame = video.closest('.media-frame');
+      if (!frame) return;
+
+      const markLoaded = () => {
+        frame.classList.add('is-loaded');
+        if (prefersReducedMotion) {
+          video.pause();
+        }
+      };
+
+      if (video.readyState >= 2) {
+        markLoaded();
+      } else {
+        video.addEventListener('loadeddata', markLoaded, { once: true });
+        video.addEventListener('canplay', markLoaded, { once: true });
+        video.addEventListener('error', () => {
+          frame.classList.remove('is-loaded');
+        }, { once: true });
+      }
+    });
+
+    if (prefersReducedMotion) {
+      root.querySelectorAll('.product-media__video').forEach((video) => {
+        video.pause();
+      });
+    }
   }
 
   /* Before / After segmented toggle (supports optional beat selector) */
-  document.querySelectorAll('[data-before-after]').forEach((container) => {
-    const beatButtons = container.querySelectorAll('[data-ba-beat-btn]');
-    const stateTabs = container.querySelectorAll('[data-ba-target]');
-    const panes = container.querySelectorAll('[data-ba-pane]');
-    const figure = container.closest('figure');
-    const caption = figure ? figure.querySelector('.slide-stage__caption') : null;
+  function initBeforeAfter(root = document) {
+    root.querySelectorAll('[data-before-after]').forEach((container) => {
+      const beatButtons = container.querySelectorAll('[data-ba-beat-btn]');
+      const stateTabs = container.querySelectorAll('[data-ba-target]');
+      const panes = container.querySelectorAll('[data-ba-pane]');
+      const figure = container.closest('figure');
+      const caption = figure ? figure.querySelector('.slide-stage__caption') : null;
 
-    let activeBeat = beatButtons.length ? (container.querySelector('[data-ba-beat-btn].is-active')?.dataset.baBeatBtn || beatButtons[0].dataset.baBeatBtn) : null;
-    let activeState = container.querySelector('[data-ba-target].is-active')?.dataset.baTarget || 'after';
+      let activeBeat = beatButtons.length ? (container.querySelector('[data-ba-beat-btn].is-active')?.dataset.baBeatBtn || beatButtons[0].dataset.baBeatBtn) : null;
+      let activeState = container.querySelector('[data-ba-target].is-active')?.dataset.baTarget || 'after';
 
-    const syncView = () => {
+      const syncView = () => {
+        beatButtons.forEach((btn) => {
+          const isCurrent = btn.dataset.baBeatBtn === activeBeat;
+          btn.classList.toggle('is-active', isCurrent);
+          btn.setAttribute('aria-pressed', isCurrent ? 'true' : 'false');
+        });
+        stateTabs.forEach((tab) => {
+          const isCurrent = tab.dataset.baTarget === activeState;
+          tab.classList.toggle('is-active', isCurrent);
+          tab.setAttribute('aria-pressed', isCurrent ? 'true' : 'false');
+        });
+        panes.forEach((pane) => {
+          const beatMatch = !activeBeat || pane.dataset.baBeat === activeBeat;
+          const isCurrent = beatMatch && pane.dataset.baPane === activeState;
+          pane.classList.toggle('is-active', isCurrent);
+          if (isCurrent && caption) {
+            const media = pane.querySelector('img[alt], video[aria-label]');
+            const label = media ? (media.getAttribute('alt') || media.getAttribute('aria-label')) : '';
+            if (label) caption.textContent = label;
+          }
+        });
+      };
+
       beatButtons.forEach((btn) => {
-        const isCurrent = btn.dataset.baBeatBtn === activeBeat;
-        btn.classList.toggle('is-active', isCurrent);
-        btn.setAttribute('aria-pressed', isCurrent ? 'true' : 'false');
+        btn.addEventListener('click', () => {
+          activeBeat = btn.dataset.baBeatBtn;
+          syncView();
+        });
       });
+
       stateTabs.forEach((tab) => {
-        const isCurrent = tab.dataset.baTarget === activeState;
-        tab.classList.toggle('is-active', isCurrent);
-        tab.setAttribute('aria-pressed', isCurrent ? 'true' : 'false');
-      });
-      panes.forEach((pane) => {
-        const beatMatch = !activeBeat || pane.dataset.baBeat === activeBeat;
-        const isCurrent = beatMatch && pane.dataset.baPane === activeState;
-        pane.classList.toggle('is-active', isCurrent);
-        if (isCurrent && caption) {
-          const media = pane.querySelector('img[alt], video[aria-label]');
-          const label = media ? (media.getAttribute('alt') || media.getAttribute('aria-label')) : '';
-          if (label) caption.textContent = label;
-        }
-      });
-    };
-
-    beatButtons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        activeBeat = btn.dataset.baBeatBtn;
-        syncView();
+        tab.addEventListener('click', () => {
+          activeState = tab.dataset.baTarget;
+          syncView();
+        });
       });
     });
+  }
 
-    stateTabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        activeState = tab.dataset.baTarget;
-        syncView();
-      });
-    });
-  });
+  initMediaReveal(document);
+  initBeforeAfter(document);
 
   /* ------------------------------------------------------------------------
      3. Mobile Navigation Toggle
@@ -212,8 +218,9 @@
   const gateForm = document.getElementById('password-gate-form');
   const passwordInput = document.getElementById('portfolio-password');
   const gateError = document.getElementById('gate-error');
+  const deckMount = document.getElementById('deck-mount');
 
-  const presentations = Array.from(document.querySelectorAll('.gated-presentation'));
+  let presentations = [];
   const deckTabs = Array.from(document.querySelectorAll('.deck-tab[data-deck-jump]'));
   const deckScrubber = document.getElementById('deck-scrubber');
   const slidePrev = document.getElementById('slide-prev');
@@ -223,6 +230,100 @@
   let activePresentationIndex = 0;
   let activeSlideIndex = 0;
   let wheelLock = false;
+
+  function base64ToBytes(b64) {
+    const binary = atob(b64);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i += 1) {
+      bytes[i] = binary.charCodeAt(i);
+    }
+    return bytes;
+  }
+
+  function isValidEnvelope(envelope) {
+    return (
+      envelope &&
+      typeof envelope === 'object' &&
+      envelope.v === 1 &&
+      envelope.kdf === 'PBKDF2-SHA256' &&
+      typeof envelope.iter === 'number' &&
+      Number.isInteger(envelope.iter) &&
+      envelope.iter > 0 &&
+      typeof envelope.salt === 'string' &&
+      envelope.salt.length > 0 &&
+      typeof envelope.iv === 'string' &&
+      envelope.iv.length > 0 &&
+      typeof envelope.ct === 'string' &&
+      envelope.ct.length > 0
+    );
+  }
+
+  async function decryptPortfolioDecks(password) {
+    if (!window.crypto || !window.crypto.subtle) {
+      throw new Error('Web Crypto API is unavailable.');
+    }
+
+    const res = await fetch(ENCRYPTED_DECKS_URL, { cache: 'no-store' });
+    if (!res.ok) {
+      throw new Error(`Failed to fetch encrypted portfolio (${res.status}).`);
+    }
+
+    const envelope = await res.json();
+    if (!isValidEnvelope(envelope)) {
+      throw new Error('Invalid encrypted portfolio envelope.');
+    }
+
+    const saltBytes = base64ToBytes(envelope.salt);
+    const ivBytes = base64ToBytes(envelope.iv);
+    const ctBytes = base64ToBytes(envelope.ct);
+
+    const keyMaterial = await window.crypto.subtle.importKey(
+      'raw',
+      new TextEncoder().encode(password),
+      'PBKDF2',
+      false,
+      ['deriveKey']
+    );
+
+    const aesKey = await window.crypto.subtle.deriveKey(
+      {
+        name: 'PBKDF2',
+        salt: saltBytes,
+        iterations: envelope.iter,
+        hash: 'SHA-256'
+      },
+      keyMaterial,
+      { name: 'AES-GCM', length: 256 },
+      false,
+      ['decrypt']
+    );
+
+    const plaintextBuffer = await window.crypto.subtle.decrypt(
+      { name: 'AES-GCM', iv: ivBytes },
+      aesKey,
+      ctBytes
+    );
+
+    return new TextDecoder().decode(plaintextBuffer);
+  }
+
+  function bindPresentationTracks() {
+    presentations.forEach((article, deckIdx) => {
+      const track = article.querySelector('.slide-track');
+      if (!track) return;
+
+      let scrollTimer = null;
+      track.addEventListener('scroll', () => {
+        if (deckIdx !== activePresentationIndex || !isHorizontalDeckMode()) return;
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => {
+          const slideWidth = track.clientWidth || window.innerWidth;
+          const nearest = Math.round(track.scrollLeft / slideWidth);
+          updateSlideUI(nearest);
+        }, 80);
+      }, { passive: true });
+    });
+  }
 
   function setDeckUnlockedState(isUnlocked) {
     gateView.hidden = isUnlocked;
@@ -241,23 +342,57 @@
     }
   }
 
-  /* Password Verification */
-  if (gateForm && passwordInput) {
-    gateForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const entered = passwordInput.value.trim().toLowerCase();
-      const isValid = VALID_PASSWORDS.some((pwd) => pwd.toLowerCase() === entered);
+  /* Password Verification & Client-Side Decryption */
+  if (gateForm && passwordInput && deckMount) {
+    const submitBtn = gateForm.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn ? submitBtn.textContent : '';
 
-      if (isValid) {
+    gateForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const password = passwordInput.value;
+
+      if (!password) {
+        deckMount.innerHTML = '';
+        if (gateError) gateError.hidden = false;
+        passwordInput.setAttribute('aria-invalid', 'true');
+        passwordInput.focus();
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Unlocking…';
+      }
+
+      try {
+        const decryptedHtml = await decryptPortfolioDecks(password);
+        deckMount.innerHTML = decryptedHtml;
+        presentations = Array.from(deckMount.querySelectorAll('.gated-presentation'));
+
+        if (!presentations.length) {
+          throw new Error('No presentations found in decrypted payload.');
+        }
+
+        initMediaReveal(deckMount);
+        initBeforeAfter(deckMount);
+        bindPresentationTracks();
+
         if (gateError) gateError.hidden = true;
         passwordInput.removeAttribute('aria-invalid');
         sessionStorage.setItem(STORAGE_KEY, 'true');
         activePresentationIndex = 0;
         setDeckUnlockedState(true);
-      } else {
+      } catch (_err) {
+        deckMount.innerHTML = '';
+        presentations = [];
         if (gateError) gateError.hidden = false;
         passwordInput.setAttribute('aria-invalid', 'true');
         passwordInput.focus();
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+        }
       }
     });
 
@@ -364,11 +499,11 @@
   }
 
   /* Case Study Switcher Buttons (Top Header + Closing Slide Tertiary Links) */
-  document.querySelectorAll('[data-deck-jump]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const targetDeck = Number(btn.getAttribute('data-deck-jump'));
-      showPresentation(targetDeck);
-    });
+  document.addEventListener('click', (event) => {
+    const btn = event.target.closest('[data-deck-jump]');
+    if (!btn || !presentations.length) return;
+    const targetDeck = Number(btn.getAttribute('data-deck-jump'));
+    showPresentation(targetDeck);
   });
 
   if (slidePrev) {
@@ -377,23 +512,6 @@
   if (slideNext) {
     slideNext.addEventListener('click', () => goToSlide(activeSlideIndex + 1));
   }
-
-  /* Sync Active Slide on Trackpad Horizontal Swipe (Desktop >= 900px) */
-  presentations.forEach((article, deckIdx) => {
-    const track = article.querySelector('.slide-track');
-    if (!track) return;
-
-    let scrollTimer = null;
-    track.addEventListener('scroll', () => {
-      if (deckIdx !== activePresentationIndex || !isHorizontalDeckMode()) return;
-      clearTimeout(scrollTimer);
-      scrollTimer = setTimeout(() => {
-        const slideWidth = track.clientWidth || window.innerWidth;
-        const nearest = Math.round(track.scrollLeft / slideWidth);
-        updateSlideUI(nearest);
-      }, 80);
-    }, { passive: true });
-  });
 
   /* Re-align Slide Position on Window Resize */
   window.addEventListener('resize', () => {
@@ -469,12 +587,15 @@
   if (printPdfBtn) {
     printPdfBtn.addEventListener('click', () => window.print());
   }
-  document.querySelectorAll('[data-trigger-print]').forEach((btn) => {
-    btn.addEventListener('click', () => window.print());
+  document.addEventListener('click', (event) => {
+    if (event.target.closest('[data-trigger-print]')) {
+      window.print();
+    }
   });
 
-  /* Restore Session Unlock State */
-  if (sessionStorage.getItem(STORAGE_KEY) === 'true') {
+  /* On page load, #deck-mount is empty because the password is never stored;
+     keep #gate-view visible so the user can enter the password to decrypt. */
+  if (sessionStorage.getItem(STORAGE_KEY) === 'true' && deckMount && deckMount.children.length > 0) {
     setDeckUnlockedState(true);
   } else {
     setDeckUnlockedState(false);

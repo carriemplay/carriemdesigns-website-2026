@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /portfolio.html
+Disallow: /assets/images/case-study-*
+Disallow: /assets/data/
