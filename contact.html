@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Carrie Mah</title>
+  <meta name="description" content="Reach out to Carrie Mah regarding Staff UX Designer, UX Design Lead, UX Manager roles, or portfolio access.">
+  <!-- Google Fonts: Poppins, Inter, Caveat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-graph-paper">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container site-header__inner">
+      <a href="index.html" class="brand-lockup" aria-label="Carrie Mah — Staff Product Designer &amp; Design Manager">
+        <span class="brand-lockup__badge" aria-hidden="true">CM</span>
+        <span class="brand-lockup__text">
+          <span class="brand-lockup__title">Carrie Mah</span>
+          <span class="brand-lockup__subtitle">Staff Product Designer &amp; Design Manager</span>
+        </span>
+      </a>
+
+      <button
+        type="button"
+        class="menu-toggle"
+        id="menu-toggle"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+        aria-label="Toggle navigation menu"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <nav id="primary-nav" class="site-nav" aria-label="Primary navigation">
+        <ul class="site-nav__list">
+          <li><a href="portfolio.html" class="site-nav__link">Portfolio</a></li>
+          <li><a href="about.html" class="site-nav__link">About</a></li>
+          <li><a href="contact.html" class="site-nav__link is-active" aria-current="page">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="contact-section bg-graph-paper" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="contact-card">
+          <div class="contact-card__header">
+            <h1 id="contact-heading" class="section-h2">Reach out</h1>
+            <p class="lead-copy">Send a note about leadership opportunities, portfolio access, or collaboration.</p>
+          </div>
+
+          <form id="contact-form" class="contact-form" novalidate>
+            <div class="form-field">
+              <label for="contact-name" class="form-label">Name</label>
+              <input
+                id="contact-name"
+                name="name"
+                type="text"
+                class="form-input"
+                placeholder="Your name"
+                autocomplete="name"
+                required
+              >
+            </div>
+
+            <div class="form-field">
+              <label for="contact-email" class="form-label">Email</label>
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                class="form-input"
+                placeholder="you@company.com"
+                autocomplete="email"
+                required
+              >
+            </div>
+
+            <div class="form-field">
+              <label for="contact-message" class="form-label">Message</label>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows="5"
+                class="form-textarea"
+                placeholder="Write your message..."
+                required
+              ></textarea>
+            </div>
+
+            <p id="contact-error" class="form-error" role="alert" aria-live="polite" hidden>
+              Please enter your name, a valid email address, and a message before sending.
+            </p>
+
+            <div>
+              <button type="submit" class="btn btn--primary">Email</button>
+            </div>
+
+            <div id="contact-feedback" class="form-feedback" role="status" aria-live="polite" hidden>
+              <p>
+                Opening your email client to send your message to <strong>contact@carriemah.com</strong>.
+                If your email app did not open automatically, <a id="contact-fallback-link" href="mailto:contact@carriemah.com?subject=New%20message%20from%20carriemdesigns.com">click here to send your email directly</a>.
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container site-footer__inner">
+      <p class="site-footer__signoff">Carrie Mah © 2026 • Designed with 💙 in Calgary, Canada.</p>
+      <div class="site-footer__roles">
+        <span class="site-footer__roles-label">Hire me for</span>
+        <ul class="pill-list" aria-label="Roles Carrie Mah is open to">
+          <li class="pill pill--cyan">Staff UX Design</li>
+          <li class="pill pill--cyan">UX Design Lead</li>
+          <li class="pill pill--cyan">UX Manager</li>
+        </ul>
+      </div>
+      <ul class="site-footer__links" aria-label="Contact and external links">
+        <li><a href="https://linkedin.com/in/carriemah" class="btn btn--tertiary" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://carriemahplay.medium.com/" class="btn btn--tertiary" target="_blank" rel="noopener noreferrer">Medium</a></li>
+        <li><a href="https://github.com/carriemplay" class="btn btn--tertiary" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="/mah-carrie_resume-2026.pdf" class="btn btn--tertiary" download>Resume</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
