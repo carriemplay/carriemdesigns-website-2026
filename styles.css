@@ -596,26 +596,17 @@ body.is-deck-unlocked .site-header__deck {
   color: var(--ink-primary);
 }
 
-.brand-lockup__badge {
+.brand-lockup__favicon {
   width: var(--space-5);
   height: var(--space-5);
-  display: grid;
-  place-items: center;
-  background-color: var(--bg-cyan);
-  border: var(--border-control);
-  border-radius: var(--radius-default);
-  box-shadow: var(--shadow-xs);
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: var(--text-base);
-  color: var(--brand-primary);
+  display: block;
+  object-fit: contain;
   flex-shrink: 0;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  transition: transform var(--transition-fast);
 }
 
-.brand-lockup:hover .brand-lockup__badge {
+.brand-lockup:hover .brand-lockup__favicon {
   transform: translate(-2px, -2px);
-  box-shadow: var(--shadow-xs-hover);
 }
 
 .brand-lockup__text {
